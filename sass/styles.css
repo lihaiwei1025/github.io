@@ -1061,7 +1061,16 @@ ul {
     width: 100%; }
 
   p {
-    font-size: 14px; } }
+    font-size: 14px; }
+
+  table {
+    width: 100%;
+    word-wrap: break-word;
+    word-break: break-all;
+    /*为表格设置合并边框模型*/
+    border-collapse: collapse;
+    /*列宽由表格宽度和列宽度设定*/
+    table-layout: fixed; } }
 .toc-article {
   position: absolute;
   left: 50%;
