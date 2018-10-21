@@ -15,44 +15,158 @@
         <link rel="icon" href="/images/favicon-hw.ico">
         <!--引入样式文件-->
         <link rel="stylesheet" href="/css/styles.css">
+
+        <!--引入不蒜子-->
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
     </head>
     <body>
         <!--指向index.ejs-->
+        <div class="content content-archive">
+    <div class="page-header">
+    <div class="blog-info-box">
+        <a class="avatar" href="/">
+            <img src="/images/avatar-256.jpg"/>
+        </a>
+        <div class="info">
+            <div class="info-name">
+                LIHAIWEI&#39;S BLOG
+            </div>
+            <div class="info-slogan">
+                华北地区唯一的王子
+            </div>
+        </div>
+    </div>
+    <div class="toolbox">
+    <a class="toolbox-home" href="/">
+        <i class="icon-heart"></i>
+    </a>
+    <ul class="toolbox-menu">
         
+            <li class="toolbox-menu-item">
+                
+                    <a href="/archives/">
+                        博客
+                    </a>
+                
+            </li>
+        
+            <li class="toolbox-menu-item">
+                
+                    <a href="/archives/">
+                        分类
+                    </a>
+                
+            </li>
+        
+            <li class="toolbox-menu-item">
+                
+                    <a href="/archives/">
+                        标签
+                    </a>
+                
+            </li>
+        
+            <li class="toolbox-menu-item">
+                
+                    <a href="/archives/">
+                        友链
+                    </a>
+                
+            </li>
+        
+            <li class="toolbox-menu-item">
+                
+                    <a href="/archives/">
+                        关于
+                    </a>
+                
+            </li>
+        
+            <li class="toolbox-menu-item">
+                
+                    <a href="/archives" target="_blank" rel="noreferrer noopener">
+                        RSS
+                    </a>
+                
+            </li>
+        
+            <li class="toolbox-menu-item">
+                
+                    <a href="http://haiweiphoto.lofter.com" target="_blank" rel="noreferrer noopener">
+                        相册
+                    </a>
+                
+            </li>
+        
+    </ul>
+</div>
+    <div class="search-box">
+    <a class="search-box-icon" href="/">
+        <i class="icon-search"></i>
+    </a>
+    <div class="search-box-input">
+        <input id="input-search" class="input-search" type="text" placeholder="Search...">
+    </div>
+</div>
+</div>
+    <!--文章列表: 按年份显示-->
+    <div class="page-content">
+        <ul class="list-post"><li class="item-year item-title item-title-3">
+    <!--url_for(path)可以路径前加上根路径 -->
+    <!--config.archive_dir这里是archives -->
+    <!--post是前面传递进来的变量-->
+    <a href="/archives/2018" class="text-year">
+        2018
+        <!--<i class="icon-dog"></i>-->
+    </a>
+</li>
 
+<li class="item-post">
+    <span class="post-date">
+        10-20
+    </span>
+    <a class="post-title" href="/2018/10/20/rxjs/">
+        RxJS 实践 ：实现异步搜索功能
+    </a>
+</li><li class="item-post">
+    <span class="post-date">
+        09-13
+    </span>
+    <a class="post-title" href="/2018/09/13/hello-world/">
+        一切重新开始
+    </a>
+</li><li class="item-post">
+    <span class="post-date">
+        07-15
+    </span>
+    <a class="post-title" href="/2018/07/15/mymac/">
+        我的电脑摔了
+    </a>
+</li><li class="item-year item-title item-title-4">
+    <!--url_for(path)可以路径前加上根路径 -->
+    <!--config.archive_dir这里是archives -->
+    <!--post是前面传递进来的变量-->
+    <a href="/archives/2014" class="text-year">
+        2014
+        <!--<i class="icon-horse"></i>-->
+    </a>
+</li>
 
-
-  <div id="archive">
-
-    <h1>Archives</h1>
-
-    
-
-    <aside>
-      <h2>Categories</h2>
-      
-        <p>None.</p>
-      
-    </aside>
-    <br>
-
-    <aside>
-      <h2>Tags</h2>
-      
-        <p>None.</p>
-      
-    </aside>
-    <br>
-
-    <aside>
-      <h2>Archives</h2>
-      
-        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li></ul>
-      
-    </aside>
-
-  </div>
-
+<li class="item-post">
+    <span class="post-date">
+        02-27
+    </span>
+    <a class="post-title" href="/2014/02/27/rain/">
+        又下雨
+    </a>
+</li></ul>
+        <div>
+            
+        </div>
+    </div>
+    <!--分页-->
+</div>
 
 
     </body>

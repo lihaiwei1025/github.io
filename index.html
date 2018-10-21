@@ -15,6 +15,10 @@
         <link rel="icon" href="/images/favicon-hw.ico">
         <!--引入样式文件-->
         <link rel="stylesheet" href="/css/styles.css">
+
+        <!--引入不蒜子-->
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
     </head>
     <body>
         <!--指向index.ejs-->
@@ -22,51 +26,53 @@
 <!--指向 home.ejs-->
 <!--主页-->
 <div class="content-home text-center">
-    <a class="avatar" href="/">
-        <img src="/images/avatar-256.jpg" alt="" />
-    </a>
-    <h1 class="blog-name">
-        LIHAIWEI&#39;S BLOG
-    </h1>
-    <div class="slogan">
-        华北地区唯一的王子
+    <div class = content-home-info>
+        <a class="avatar" href="/">
+            <img src="/images/avatar-256.jpg" alt="" />
+        </a>
+        <h1 class="blog-name">
+            LIHAIWEI&#39;S BLOG
+        </h1>
+        <div class="slogan">
+            华北地区唯一的王子
+        </div>
+        <hr class="hr-home">
+        <ul class="text-center home-nav">
+            
+            <li class="home-item text-center">
+                
+                    <a href="/archives">Blog</a>
+                
+                <span>|</span>
+            </li>
+            
+            <li class="home-item text-center">
+                
+                    <a href="https://github.com/lihaiwei1025" rel="noopener noreferrer" target="_blank">
+                        Github
+                    </a>
+                
+                <span>|</span>
+            </li>
+            
+            <li class="home-item text-center">
+                
+                    <a href="http://haiweiphoto.lofter.com/" rel="noopener noreferrer" target="_blank">
+                        Album
+                    </a>
+                
+                <span>|</span>
+            </li>
+            
+            <li class="home-item text-center">
+                
+                    <a href="/archives">About</a>
+                
+                <span>|</span>
+            </li>
+            
+        </ul>
     </div>
-    <hr class="hr-home">
-    <ul class="text-center home-nav">
-        
-        <li class="home-item text-center">
-            
-                <a href="/404">Blog</a>
-            
-            <span>|</span>
-        </li>
-        
-        <li class="home-item text-center">
-            
-                <a href="https://github.com/lihaiwei1025" rel="noopener noreferrer" target="_blank">
-                    Github
-                </a>
-            
-            <span>|</span>
-        </li>
-        
-        <li class="home-item text-center">
-            
-                <a href="/about" rel="noopener noreferrer" target="_blank">
-                    Album
-                </a>
-            
-            <span>|</span>
-        </li>
-        
-        <li class="home-item text-center">
-            
-                <a href="/about">About</a>
-            
-            <span>|</span>
-        </li>
-        
-    </ul>
 </div>
 
 <!-- partial('footer') -->

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+
+
+    <html class="light page-post">
+
+    <head>
+        <!--规定 HTML 文档的字符编码-->
+        <meta charset="utf-8">
+        <!--针对移动端的优化-->
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <!--SEO-->
+        <meta name="keywords" content="lihaiwei,前端,设计,Hexo主题,frontend,design,nodejs,JavaScript">
+        
+        <title>一切重新开始 | HAIWEI</title>
+        <link rel="icon" href="/images/favicon-hw.ico">
+        <!--引入样式文件-->
+        <link rel="stylesheet" href="/css/styles.css">
+
+        <!--引入不蒜子-->
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    </head>
+    <body>
+        <!--指向index.ejs-->
+        <!--文章详情页面-->
+
+<div class="content content-post">
+
+  <div class="post-header">
+    <div class="post-header-info">
+        <a class="avatar" href="/">
+            <img src="/images/avatar-256.jpg"/>
+        </a>
+        <div class="post-header-tool">
+            <div class="toolbox">
+    <a class="toolbox-home" href="/">
+        <i class="icon-heart"></i>
+    </a>
+    <ul class="toolbox-menu">
+        
+            <li class="toolbox-menu-item">
+                
+                    <a href="/archives/">
+                        博客
+                    </a>
+                
+            </li>
+        
+            <li class="toolbox-menu-item">
+                
+                    <a href="/archives/">
+                        分类
+                    </a>
+                
+            </li>
+        
+            <li class="toolbox-menu-item">
+                
+                    <a href="/archives/">
+                        标签
+                    </a>
+                
+            </li>
+        
+            <li class="toolbox-menu-item">
+                
+                    <a href="/archives/">
+                        友链
+                    </a>
+                
+            </li>
+        
+            <li class="toolbox-menu-item">
+                
+                    <a href="/archives/">
+                        关于
+                    </a>
+                
+            </li>
+        
+            <li class="toolbox-menu-item">
+                
+                    <a href="/archives" target="_blank" rel="noreferrer noopener">
+                        RSS
+                    </a>
+                
+            </li>
+        
+            <li class="toolbox-menu-item">
+                
+                    <a href="http://haiweiphoto.lofter.com" target="_blank" rel="noreferrer noopener">
+                        相册
+                    </a>
+                
+            </li>
+        
+    </ul>
+</div>
+        </div>
+        <div class="post-header-slogan">
+            <div class="slogan">
+                活在这珍贵的人间 / 人类和植物一样幸福 / 爱情和雨水一样幸福
+            </div>
+        </div>
+    </div>
+</div>
+
+  <!--目录-->
+  <!--判断是否存在目录-->
+
+
+
+
+  <!--文章详情-->
+  <div class="post-article">
+    <article id="post-hello-world" class="article article-type-post" itemprop="blogPost">
+        <header class="article-header">
+            <span class="article-header-title">一切重新开始</span>
+            <div class="article-meta">
+                <span>
+                    <i class="icon-user"></i>
+                    <span>lihaiwei&nbsp;&nbsp;&nbsp;</span>
+                </span>
+                <span>
+                    <i class="icon-calendar"></i>
+                    <span>2018-09-13&nbsp;&nbsp;&nbsp;</span>
+                </span>
+                <span>
+                    <i class="icon-eye"></i>
+                    <span id="busuanzi_container_page_pv">
+                        PV&nbsp<span id="busuanzi_value_page_pv"></span>
+                    </span>
+                </span>
+            </div>
+        </header>
+        <div class="article-content">
+            <p>一直以来都想做个属于自己的网站，可惜自己的前端水平实在是肤浅。真的要准备好好学习前端了！幸好还有伟大的 Google 和 Github，作为面向浏览器写码的程序员，我惊喜的发现可以使用 <code>Github Pages</code> + <code>Hexo</code> 免费搭建个人博客，网络上关于这方面的教程很多。</p>
+<p>搭建好博客之后，发现 <code>Hexo</code> 自带的主题太平庸了，于是花了点时间找到了一个简洁美观的主题：<a href="https://github.com/forsigner/fexo.git" target="_blank" rel="noopener">fexo</a> ，这套主题我还是比较喜欢的。换了<code>fexo</code>主题之后，我又感觉有的地方太丑，比如文章中代码的显示格式有点乱。本着学习前端的心态，我把作者的代码 clone 下来，从头开始捋。</p>
+<p>之前看过一句话 ：<strong>Don’t dissect the frog, build it.</strong>  意思是只看代码是没啥用的，照着做一遍才能知道具体是怎么回事。所以我参考作者的源码，从头开始，修修改改，大致理解了开发一个 <code>Hexo</code> 主题所需的知识：</p>
+<ol>
+<li>前端基础知识：JavaScipt、HTML、CSS 等。</li>
+<li>模版引擎： Hexo 的博客页面都是通过模板引擎渲染的静态页面。用模板引擎可以比较方便地帮我们实现代码的复用。模板引擎有 swig、ejs、jade 等。</li>
+<li>CSS预处理器：CSS 预处理能够帮助我们方便的写 CSS，具有复用代码、函数等功能。常见的 CSS 预处理器有 Sass、Less、 Stylus 等。</li>
+<li>Hexo开发文档：包括 Hexo 提供的文档，Hexo 模版，Hexo 变量等。</li>
+</ol>
+<p>作者的这个 <code>fexo</code> 主题使用了 <code>ejs</code> 模版引擎，<code>sass</code> 预处理器。我在 <code>fexo</code> 主题的基础之上，重新做了一个功能简陋，勉强能用的主题。还有一些功能尚未实现（评论，归档，搜索等..），等以后慢慢添加。</p>
+<p>Whatever，我已经按捺不住，先上线再说！一切重新开始: Hello, World.</p>
+<blockquote>
+<p>昨日种种，皆成今我，切莫思量，更莫哀。从今往后，怎么收获，怎么栽。 —— 胡适</p>
+</blockquote>
+
+        </div>
+    </article>
+</div>
+
+
+  <div class="post-prev-next">
+    <div class="box-prev-next clearfix">
+        <span>
+            <a class="show pull-left" href="/2018/07/15/mymac/">
+                <i class="icon icon-angle-left"></i>
+            </a>
+            <a class="show pull-right" href="/2018/10/20/rxjs/">
+                <i class="icon icon-angle-right"></i>
+            </a>
+        </span>
+    </div>
+</div>
+
+
+
+
+  <div class="post-gitalk">
+    <div id="git"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+    <script>
+        const gitalk = new Gitalk({
+            clientID: '3ff2f08b299ead56d80d',
+            clientSecret: '81fa00fc11c1ac7229750a9e2e41ecbc9463eea5',
+            repo: 'lihaiwei1025.github.io',
+            owner: 'lihaiwei1025',
+            admin: ['lihaiwei1025'],
+            // facebook-like distraction free mode
+            distractionFreeMode: false,
+            // id: 'window.location.pathname'
+        });
+        gitalk.render('git');
+    </script>
+</div>
+
+
+  <div class="post-footer">
+    <footer class="post-footer-copyright">Copyright&copy; 2018 lihaiwei. All rights reserved.</footer>
+    <div class="post-footer-info">
+        Powerd by Hexo | Theme-lotus
+    </div>
+</div>
+
+</div>
+
+
+
+    </body>
+</html>

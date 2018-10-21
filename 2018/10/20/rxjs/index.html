@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+
+
+    <html class="light page-post">
+
+    <head>
+        <!--规定 HTML 文档的字符编码-->
+        <meta charset="utf-8">
+        <!--针对移动端的优化-->
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <!--SEO-->
+        <meta name="keywords" content="lihaiwei,前端,设计,Hexo主题,frontend,design,nodejs,JavaScript">
+        
+        <title>RxJS 实践 ：实现异步搜索功能 | HAIWEI</title>
+        <link rel="icon" href="/images/favicon-hw.ico">
+        <!--引入样式文件-->
+        <link rel="stylesheet" href="/css/styles.css">
+
+        <!--引入不蒜子-->
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    </head>
+    <body>
+        <!--指向index.ejs-->
+        <!--文章详情页面-->
+
+<div class="content content-post">
+
+  <div class="post-header">
+    <div class="post-header-info">
+        <a class="avatar" href="/">
+            <img src="/images/avatar-256.jpg"/>
+        </a>
+        <div class="post-header-tool">
+            <div class="toolbox">
+    <a class="toolbox-home" href="/">
+        <i class="icon-heart"></i>
+    </a>
+    <ul class="toolbox-menu">
+        
+            <li class="toolbox-menu-item">
+                
+                    <a href="/archives/">
+                        博客
+                    </a>
+                
+            </li>
+        
+            <li class="toolbox-menu-item">
+                
+                    <a href="/archives/">
+                        分类
+                    </a>
+                
+            </li>
+        
+            <li class="toolbox-menu-item">
+                
+                    <a href="/archives/">
+                        标签
+                    </a>
+                
+            </li>
+        
+            <li class="toolbox-menu-item">
+                
+                    <a href="/archives/">
+                        友链
+                    </a>
+                
+            </li>
+        
+            <li class="toolbox-menu-item">
+                
+                    <a href="/archives/">
+                        关于
+                    </a>
+                
+            </li>
+        
+            <li class="toolbox-menu-item">
+                
+                    <a href="/archives" target="_blank" rel="noreferrer noopener">
+                        RSS
+                    </a>
+                
+            </li>
+        
+            <li class="toolbox-menu-item">
+                
+                    <a href="http://haiweiphoto.lofter.com" target="_blank" rel="noreferrer noopener">
+                        相册
+                    </a>
+                
+            </li>
+        
+    </ul>
+</div>
+        </div>
+        <div class="post-header-slogan">
+            <div class="slogan">
+                活在这珍贵的人间 / 人类和植物一样幸福 / 爱情和雨水一样幸福
+            </div>
+        </div>
+    </div>
+</div>
+
+  <!--目录-->
+  <!--判断是否存在目录-->
+
+<div id="toc" class="toc-article">
+    <strong class="toc-title">目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是RxJS"><span class="toc-text">什么是RxJS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用-RxJS-实现异步搜索功能"><span class="toc-text">使用 RxJS 实现异步搜索功能</span></a></li></ol>
+</div>
+
+
+
+
+  <!--文章详情-->
+  <div class="post-article">
+    <article id="post-rxjs" class="article article-type-post" itemprop="blogPost">
+        <header class="article-header">
+            <span class="article-header-title">RxJS 实践 ：实现异步搜索功能</span>
+            <div class="article-meta">
+                <span>
+                    <i class="icon-user"></i>
+                    <span>lihaiwei&nbsp;&nbsp;&nbsp;</span>
+                </span>
+                <span>
+                    <i class="icon-calendar"></i>
+                    <span>2018-10-20&nbsp;&nbsp;&nbsp;</span>
+                </span>
+                <span>
+                    <i class="icon-eye"></i>
+                    <span id="busuanzi_container_page_pv">
+                        PV&nbsp<span id="busuanzi_value_page_pv"></span>
+                    </span>
+                </span>
+            </div>
+        </header>
+        <div class="article-content">
+            <h2 id="什么是RxJS"><a href="#什么是RxJS" class="headerlink" title="什么是RxJS"></a>什么是RxJS</h2><p>RxJS 是 ReactiveX 编程理念的 JavaScript 版本。ReactiveX 来自微软，它是一种针对异步数据流的编程。简单来说，它将一切数据，包括 HTTP 请求，DOM 事件或者普通数据等包装成流的形式，然后用强大丰富的操作符对流进行处理，使你能以同步编程的方式处理异步数据，并组合不同的操作符来轻松优雅的实现你所需要的功能。</p>
+<blockquote>
+<p>Rxjs + Observable === Streams</p>
+</blockquote>
+<p>RxJS 提供了一个核心类型 <code>Observable</code> ：可观察对象，附属类型 <code>Observer</code>、 <code>Schedulers</code>、 <code>Subjects</code> 。<code>Observable</code> 叫做可观察对象，它是声明式的，也就是说，虽然你定义了一个用于发布值的函数，但是在有消费者订阅它之前，这个函数并不会实际执行。 订阅之后，当这个函数执行完或取消订阅时，订阅者就会收到通知。</p>
+<p>RxJS 还提供了操作符 <code>map()</code>、<code>filter()</code>、<code>reduce()</code>、<code>every()</code>、<code>concat()</code>、<code>flatMap()</code> 等等。这些数组操作符可以把异步事件作为集合来处理。可以使用管道 <code>pipe()</code>把这些操作符链接起来。管道可以把多个由操作符返回的函数组合成一个函数。<code>pipe()</code> 函数以你要组合的这些函数作为参数，并且返回一个新的函数，当执行这个新函数时，就会顺序执行那些被组合进去的函数。<code>pipe()</code> 也同时是 RxJS 的 Observable 上的一个方法。</p>
+<blockquote>
+<p>注意，对于 Angular 应用来说，提倡使用管道来组合操作符，而不是使用链式写法。</p>
+</blockquote>
+<h2 id="使用-RxJS-实现异步搜索功能"><a href="#使用-RxJS-实现异步搜索功能" class="headerlink" title="使用 RxJS 实现异步搜索功能"></a>使用 RxJS 实现异步搜索功能</h2><p>搜索是前端开发中很常见的功能，一般是监听 <code>input</code> 的 <code>keyup</code> 事件，然后将搜索内容发送到后台，获取到后台返回的数据之后再进行展示。</p>
+<p>首先在 <code>HTML</code> 中定义 <code>input</code> 元素，然后使用模板引用变量 <code>#filterBox</code> 来引用这个 DOM 元素。<code>#filterBox</code> 的意思就是声明一个名叫 <code>filterBox</code> 的变量来引用 <code>input</code> 元素。<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input class="text" type="text" placeholder="Search..." #filterBox&gt;</span><br></pre></td></tr></table></figure></p>
+<p>然后使用 <code>@ViewChild(&#39;filterBox&#39;)</code> 装饰器获取模板视图中的 <code>input</code> 元素：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ViewChild(<span class="string">'filterBox'</span>)</span><br><span class="line">private filterBox: ElementRef;</span><br></pre></td></tr></table></figure></p>
+<p>接着使用 <code>RxJS</code> 操作符 <code>fromEvent</code> 创建一个<code>Observable</code> 流，来监听输入框的 <code>keyup</code> 事件，触发 <code>keyup</code> 将产生 <code>Observable</code> 流，在这里可以使用 <code>subscribe()</code> 函数看一下我们定义的 <code>source</code> 这个<code>Observable</code> 流中的内容。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> source = fromEvent(<span class="keyword">this</span>.filterBox.nativeElement, <span class="string">'keyup'</span>);</span><br><span class="line">source.subscribe(<span class="function">(<span class="params">obj</span>) =&gt;</span> &#123;</span><br><span class="line">	<span class="built_in">console</span>.log(obj);</span><br><span class="line">	<span class="built_in">console</span>.log(obj.target.value);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>从打印出的内容可以看出这是一个 <code>KeyboardEvent</code> 事件流，其中有个属性为 <code>target</code>，通过该属性便可以获得输入的内容。</p>
+<p>接着使用管道，并通过组合一系列操作符来实现异步搜索的功能：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> observable = source.pipe(</span><br><span class="line">	pluck(<span class="string">'target'</span>, <span class="string">'value'</span>),</span><br><span class="line">	debounceTime(<span class="number">500</span>),</span><br><span class="line">	map(<span class="function">(<span class="params">text: string</span>) =&gt;</span> <span class="keyword">this</span>.albumService.searchAnomalies(text)),</span><br><span class="line">	switchAll(),</span><br><span class="line">);</span><br></pre></td></tr></table></figure></p>
+<p><code>pluck()</code> 的作用是提取嵌套的属性，这里提取的是 <code>target</code>中的 <code>value</code>;<br><code>debounceTime(500)</code> 设置了 0.5s  后，若没有流入新值才执行下一步。因为两次 <code>keyup</code> 事件的时间间隔足够长时，才应该发送异步请求；<br><code>switchAll()</code> 只会保留最后的流，而取消抛弃之前的流。</p>
+
+        </div>
+    </article>
+</div>
+
+
+  <div class="post-prev-next">
+    <div class="box-prev-next clearfix">
+        <span>
+            <a class="show pull-left" href="/2018/09/13/hello-world/">
+                <i class="icon icon-angle-left"></i>
+            </a>
+            <a class="hide pull-right" href="/">
+                <i class="icon icon-angle-right"></i>
+            </a>
+        </span>
+    </div>
+</div>
+
+
+
+
+  <div class="post-gitalk">
+    <div id="git"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+    <script>
+        const gitalk = new Gitalk({
+            clientID: '3ff2f08b299ead56d80d',
+            clientSecret: '81fa00fc11c1ac7229750a9e2e41ecbc9463eea5',
+            repo: 'lihaiwei1025.github.io',
+            owner: 'lihaiwei1025',
+            admin: ['lihaiwei1025'],
+            // facebook-like distraction free mode
+            distractionFreeMode: false,
+            // id: 'window.location.pathname'
+        });
+        gitalk.render('git');
+    </script>
+</div>
+
+
+  <div class="post-footer">
+    <footer class="post-footer-copyright">Copyright&copy; 2018 lihaiwei. All rights reserved.</footer>
+    <div class="post-footer-info">
+        Powerd by Hexo | Theme-lotus
+    </div>
+</div>
+
+</div>
+
+
+
+    </body>
+</html>
